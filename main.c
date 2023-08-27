@@ -12,30 +12,25 @@ int main(int argc, char *argv[]) {
         return EXIT_FAILURE;
     }
 
-    Stack stack;
-    stack.top = 0;
+    stack_t *stack = NULL;
+    char line[100]; // Adjust the buffer size as needed
+    unsigned int line_number = 1;
 
-    char opcode[10];
-    int value;
+    while (fgets(line, sizeof(line), file) != NULL) {
+        char opcode[10];
+        int value;
 
-    while (fscanf(file, "%s", opcode) != EOF) {
-        if (strcmp(opcode, "push") == 0) {
-            if (fscanf(file, "%d", &value) != 1) {
-                fprintf(stderr, "Error: Usage: push integer\n");
-                fclose(file);
-                return EXIT_FAILURE;
-            }
-            push(&stack, value);
+        if (sscanf(line, "%s %d", opcode, &value) == 2 && strcmp(opcode, "push") == 0) {
+            push(&stack, value, line_number);
         } else if (strcmp(opcode, "pall") == 0) {
-            pall(&stack);
-        } else {
-            fprintf(stderr, "Error: Unknown opcode: %s\n", opcode);
-            fclose(file);
-            return EXIT_FAILURE;
+            pall(&stack, line_number);
         }
+        
+        line_number++;
     }
 
     fclose(file);
+    free_stack(stack);
     return 0;
 }
 

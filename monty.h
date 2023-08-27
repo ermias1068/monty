@@ -5,15 +5,22 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define STACK_SIZE 100
+typedef struct stack_s
+{
+    int n;
+    struct stack_s *prev;
+    struct stack_s *next;
+} stack_t;
 
-typedef struct Stack {
-    int data[STACK_SIZE];
-    int top;
-} Stack;
+typedef struct instruction_s
+{
+    char *opcode;
+    void (*f)(stack_t **stack, unsigned int line_number);
+} instruction_t;
 
-void push(Stack *stack, int value);
-void pall(const Stack *stack);
+void push(stack_t **stack, int value, unsigned int line_number);
+void pall(stack_t **stack, unsigned int line_number);
+void free_stack(stack_t *stack);
 
 #endif /* MONTY_H */
 
