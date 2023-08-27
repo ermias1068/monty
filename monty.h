@@ -1,35 +1,5 @@
-
-.gitignore
-README.md
-doubly_functions.c
-get_opcodes.c
-main.c
-malloc_functions.c
-monty.h
-opcode_instructions.c
-opcode_instructions2.c
-opcode_instructions3.c
-opcode_instructions4.c
-str_functions.c
-Documentation • Share feedback
-Breadcrumbsmonty
-/monty.h
-Latest commit
-jorgezafra94
-jorgezafra94
-[Feature] create rotr function, reverse the total stack
-089966d
- · 
-4 years ago
-History
-File metadata and controls
-
-Code
-
-Blame
-103 lines (92 loc) · 2.79 KB
-#ifndef MONTY
-#define MONTY
+#ifndef MONTY_H
+#define MONTY_H
 
 #include <stdio.h>
 #include <stdlib.h>
